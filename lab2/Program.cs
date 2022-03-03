@@ -8,23 +8,19 @@ namespace lab2
         {
             try
             {
-                //RomanNumberExcaption
-                //RomanNumber r1 = new RomanNumber(0);
-                RomanNumber r2 = new RomanNumber(28);
-                RomanNumber r3 = new RomanNumber(6);
-                RomanNumber r4 = new RomanNumber(15);
-                RomanNumber r5 = new RomanNumber(38);
-                RomanNumber r6 = new RomanNumber(82);
-                Console.WriteLine($"Add: {r2.ToString()} + {r6.ToString()} = {RomanNumber.Add(r2, r6).ToString()}");
-                Console.WriteLine($"Div: {r2.ToString()} / {r3.ToString()} = {RomanNumber.Div(r2, r3).ToString()}");
-                Console.WriteLine($"Sub: {r6.ToString()} - {r5.ToString()} = {RomanNumber.Sub(r6, r5).ToString()}");
-                Console.WriteLine($"Mul: {r3.ToString()} * {r4.ToString()} = {RomanNumber.Mul(r3, r4).ToString()}");
-                RomanNumber[] r = { r2, r3, r4, r5, r6 };
-                Array.Sort(r);
-                Console.WriteLine("Result");
-                foreach (var el in r)
+                RomanNumber n1 = new RomanNumber(15); RomanNumber n2 = new RomanNumber(4); RomanNumber n3 = new RomanNumber(10);
+                RomanNumber n4 = new RomanNumber(50); RomanNumber n5 = new RomanNumber(89);
+                Console.WriteLine($"Сложение: {n1.ToString()} + {n5.ToString()} = {(n1 + n5).ToString()}");
+                Console.WriteLine($"Деление: {n1.ToString()} / {n2.ToString()} = {(n1 / n2).ToString()}");
+                Console.WriteLine($"Вычитание: {n5.ToString()} - {n4.ToString()} = {(n5 - n4).ToString()}");
+                Console.WriteLine($"Умножение: {n2.ToString()} * {n3.ToString()} = {(n2 * n3).ToString()}");
+
+                RomanNumber[] numbers = { n1, n2, n3, n4, n5 };
+                Array.Sort(numbers);
+                Console.WriteLine("Результат сортировки \n");
+                foreach (var el in numbers)
                 {
-                    Console.WriteLine(el.ToString());
+                    Console.WriteLine($"{el.ToString()} \n");
                 }
 
             }

@@ -6,66 +6,63 @@ using System.Threading.Tasks;
 
 namespace lab2
 {
-    internal class RomanNumber : ICloneable, IComparable
+    public class RomanNumber : ICloneable, IComparable
     {
-
-        private ushort _number;
+        
+        private ushort _num;
         private static int[] values = new int[] { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
         private static string[] roman = new string[]
             { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
         public RomanNumber(ushort n)
         {
-            if (n <= 0) throw new RomanNumberException($"{n} меньше либо равно 0");
-            else this._number = n;
+            if (n <= 0) throw new RomanNumberException($"Число {n} меньше либо равно 0");
+            else this._num = n;
         }
-        public static RomanNumber Add(RomanNumber? n1, RomanNumber? n2)
+        public static RomanNumber operator + (RomanNumber? n1, RomanNumber? n2)
         {
-            int num = n1._number + n2._number;
-            if (num <= 0) throw new RomanNumberException($"Не удалось сложить числа {n1} и {n2}");
+            int num = n1._num + n2._num;
+            if (num <= 0) throw new RomanNumberException("Не удалось сложить  числа!");
             else
             {
-                RomanNumber result = new((ushort)num);
-                return result;
+                return new RomanNumber((ushort)num);
             }
         }
-        public static RomanNumber Sub(RomanNumber? n1, RomanNumber? n2)
+        public static RomanNumber operator -(RomanNumber? n1, RomanNumber? n2)
         {
-            int num = n1._number - n2._number;
-            if (num <= 0) throw new RomanNumberException($"Результат вычитания чисел {n1} и {n2} меньше либо равен 0");
+            int num = n1._num - n2._num;
+            if (num <= 0) throw new RomanNumberException("Результат вычитания меньше либо равен 0!");
             else
             {
-                RomanNumber result = new((ushort)num);
-                return result;
+                return new RomanNumber((ushort)num);
             }
         }
-        public static RomanNumber Mul(RomanNumber? n1, RomanNumber? n2)
+        public static RomanNumber operator *(RomanNumber? n1, RomanNumber? n2)
         {
-            int num = n1._number*n2._number;
-            if (num <= 0) throw new RomanNumberException($"Не удалось умножить {n1} и {n2}");
+            int num = n1._num * n2._num;
+            if (num <= 0) throw new RomanNumberException("Не удалось умножить 2 числа!");
             else
             {
-                RomanNumber result = new((ushort)num);
-                return result;
+                return new RomanNumber((ushort)num);
             }
         }
-        public static RomanNumber Div(RomanNumber? n1, RomanNumber? n2)
+
+        public static RomanNumber operator /(RomanNumber? n1, RomanNumber? n2)
         {
 
-            if (n2._number == 0) throw new RomanNumberException("Error del");
+            if (n2._num == 0) throw new RomanNumberException($"Ошибка деления чисел {n1} и {n2}!") ;
             else
             {
-                int num = n1._number / n2._number;
-                if (num == 0) throw new RomanNumberException("Error del");
+                int num = n1._num / n2._num;
+                if (num == 0) throw new RomanNumberException($"Ошибка деления чисел {n1} и {n2}");
                 else
                 {
-                    RomanNumber result = new((ushort)num);
-                    return result;
+                    return new RomanNumber((ushort)num);
                 }
             }
         }
         public override string ToString()
         {
-            int tmp = _number;
+            int tmp = _num;
             StringBuilder result = new StringBuilder();
             for (int i = 0; i < 13; i++)
             {
@@ -84,15 +81,16 @@ namespace lab2
 
         public object Clone()
         {
-            return new RomanNumber(_number);
+
+            return new RomanNumber(_num);
         }
 
         public int CompareTo(object obj)
         {
             if (obj is RomanNumber roman)
-                return _number.CompareTo(roman._number);
+                return _num.CompareTo(roman._num);
             else
-                throw new RomanNumberException("object isn't a RomanNumber");
+                throw new RomanNumberException("object is not a RomanNumber");
         }
 
     }
